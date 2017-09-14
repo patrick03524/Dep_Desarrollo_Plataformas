@@ -1,0 +1,126 @@
+<html>
+	<head>
+		<script>
+		var mostrar;
+		var v1;
+		var v2;
+		var ope;
+		var res;
+		function borrar(){
+			v1 = "0";
+			v2 = "0";
+			ope = null;
+			res = 1;
+			mostrar.value="0";
+		}
+		function bot(num){
+			var temp=num.value;
+			
+			if (temp=='limpiar'){
+			borrar();
+			return ;
+			}
+			if(temp =='='){
+				var result;
+				switch (ope)
+				{
+					case '*':
+						result=parseFloat(v1)*parseFloat(v2);
+					break;
+					case '+':
+						result=parseFloat(v1)+parseFloat(v2);
+					break;
+					case '-':
+						result=parseFloat(v1)-parseFloat(v2);
+					break;
+					case '/':
+						result=parseFloat(v1)/parseFloat(v2);
+					break;
+					
+				}
+				mostrar.value=result,toString();
+				res=1;  
+				return ;
+			}
+			if ((temp == '*')||(temp=='+')||(temp=='-')||(temp == '/')){
+				ope=temp;
+				res=2;
+				return;
+			}
+			if ((temp =='.')||(temp >='0')&&(temp<='9')){
+				if (res ==1){
+					v1+=temp;
+					mostrar.value=parseFloat(v1).toString();
+				}
+				else if(res==2){
+					v2+=temp;
+					mostrar.value=parseFloat(v2).toString();
+				}
+			}
+			
+		}
+		/*
+		function sumar(){
+			var f = function(a,b){return a+b}
+			ejecutar(f);
+		}
+		function restar(){
+			ejecutar(function(a,b) {return a-b});
+		}
+		function multiplicar(a,b){
+			return a*b
+		}
+		function producto(){
+			ejecutar(multiplicar);
+		}
+		function ejecutar(operacion){
+			var a = document.getElementById("a1");
+			var b = document.getElementById("b1");
+			var x = parseInt(a.value);
+			var y = parseInt(b.value);
+			var c = operacion(x,y);
+			var r = document.getElementById("r");
+			r.innerText = "El resultado es : "+c;
+		}*/
+		function calculadora(){
+			mostrar=document.getElementById('m'); 
+			borrar();
+		}
+		</script>
+	</head>
+	<body onload="calculadora();">
+		<div id = "title">
+		 Calculadora
+		</div>
+		<div>
+		<input type ="text" id = "m" value="0"/>
+		</div>
+		<div id = "limpiar">
+		<input type="button" id="limpieza" value="limpiar" onclick="borrar(this);"/>
+		</div>
+		<div id = "789/">
+		<input type="button" id="num7" value="7" onclick="bot(this);"/>
+		<input type="button" id="num8" value="8" onclick="bot(this);"/>
+		<input type="button" id="num9" value="9" onclick="bot(this);"/>
+		<input type="button" id="divi" value="/" onclick="bot(this);"/>
+		</div >
+		<div id = "456*">
+		<input type="button" id="num4" value="4" onclick="bot(this);"/>
+		<input type="button" id="num5" value="5" onclick="bot(this);"/>
+		<input type="button" id="num6" value="6" onclick="bot(this);"/>
+		<input type="button" id="mult" value="*" onclick="bot(this);"/>
+		</div>
+		<div id = "123-">
+		<input type="button" id="num1" value="1" onclick="bot(this);"/>
+		<input type="button" id="num2" value="2" onclick="bot(this);"/>
+		<input type="button" id="num3" value="3" onclick="bot(this);"/>
+		<input type="button" id="rest" value="-" onclick="bot(this);"/>
+		</div>
+		<div id = "0.+=">
+		<input type="button" id="num0" value="0" onclick="bot(this);"/>
+		<input type="button" id="point" value="." onclick="bot(this);"/>
+		<input type="button" id="suma" value="+" onclick="bot(this);"/>
+		<input type="button" id="result" value="=" onclick="bot(this);"/>
+		</div>
+	</body>
+</html>
