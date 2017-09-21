@@ -1,0 +1,108 @@
+<html>
+ <head>
+  <script>
+var alumno = {
+ "nombre" : "Juan",
+ "edad" : 17,
+ "cursos": [
+   {
+     "codigo" : "A34",
+	 "nombre" : "Algoritmos"
+   },
+   {
+     "codigo" : "B34",
+	 "nombre" : "Base de Datos"
+   },
+   {
+     "codigo" : "C24",
+	 "nombre" : "Ciencia de la Computación"
+   }
+ ],
+ "direccion" : {
+   "tipo": "Calle"
+ }
+};
+function boton_descripcion(){
+	var menu = document.getElementById("OUT");
+	var tabla = document.createElement("TB");
+	var nombre_curso = document.createElement("NC");
+	var codigo_curso = document.createElement("CC");
+	
+	tabla.border = "1";
+	
+	var n1 = document.createElement("ND");
+	var n2 = document.createElement("ND");
+	n1.innerText = "Nombre :";
+	n2.innerText = alumno.cursos[0].nombre;
+	nombre_curso.appendChild(n1);
+	nombre_curso.appendChild(n2);
+
+	n1.innerText = "Código :";
+	n2.innerText = alumno.cursos[0].codigo;
+	codigo_curso.appendChild(n1);
+	codigo_curso.appendChild(n2);
+	
+	tabla.appendChild(nombre_curso);
+	tabla.appendChild(codigo_curso);
+	menu.innerHTML = "";
+	menu.appendChild(tabla);
+	
+}
+	
+function verResultado() {
+  var out = document.getElementById("output");
+  var table = document.createElement("TABLE");
+  var trNombre = document.createElement("TR");
+  var trEdad = document.createElement("TR");
+  var trCursos = document.createElement("TR");
+  
+
+  table.border = "1";
+
+  var td1 = document.createElement("TD");
+  var td2 = document.createElement("TD");
+  td1.innerText = "Nombre:";
+  td2.innerText = alumno.nombre;
+  trNombre.appendChild(td1);
+  trNombre.appendChild(td2);
+
+  td1 = document.createElement("TD");
+  td2 = document.createElement("TD");
+  td1.innerText = "Edad:";
+  td2.innerText = alumno.edad;
+  trEdad.appendChild(td1);
+  trEdad.appendChild(td2);
+
+  td1 = document.createElement("TD");
+  td2 = document.createElement("TD");
+  td1.innerText = "Cursos:";
+  var ulCursos = document.createElement("UL");
+  for (var i=0; i<alumno.cursos.length; i++) {
+	var botona = document.createElement("BO");
+	var liCurso = document.createElement("LI");
+	liCurso.innerHTML = alumno.cursos[i].nombre;
+	ulCursos.appendChild(liCurso);
+	liCurso.id = "curso-" + i;
+	
+	//<button onclick="verResultado(i)">X</button>
+  }
+  td2.appendChild(ulCursos);
+  trCursos.appendChild(td1);
+  trCursos.appendChild(td2);
+
+  table.appendChild(trNombre);
+  table.appendChild(trEdad);
+  table.appendChild(trCursos);
+  out.innerHTML = "";
+  out.appendChild(table);
+}
+  </script>
+ </head>
+ <body>
+   <button onclick="verResultado()">Ver Resultado</button>
+	<div id="output" style="margin: 10px; padding: 5px;"></div>
+	<button onclick="boton_descripcion()">X</button>
+		<div id="menu" style="margin: 10px; padding: 5px;"></div>
+	
+ </body>
+</html>
